@@ -1,0 +1,14 @@
+---
+layout: blog
+title: "Post index"
+---
+
+{% for post in site.posts %}
+	<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" class="index-post well">
+		<h3 itemprop="name"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+		<div class="post-date">Posted <span itemprop="datePublished" class="date">{{ post.date | date: "%Y-%m-%d" }}</span></div>
+		<p itemprop="description">{{ post.content | strip_html | truncate: 512 }}</p>
+		<div class="read-more"><a href="{{ post.url }}">Read more &raquo;</a></div>
+	</article>
+{% endfor %}
+

@@ -1,0 +1,74 @@
+.blog {
+    h3:first-child {
+		margin-top: 0;
+	}
+
+	img {
+		margin: 10px 0 40px 0;
+		border: 2px solid #c5c5c5;
+	}
+
+	> .description {
+		margin: 0 0 30px 40px;
+	}
+
+	.post-date {
+
+		border-left: 6px solid @h12Color;
+		border-bottom: 1px solid #c5c5c5;
+
+		margin: 20px 0 10px 0;
+		padding: 4px 10px;
+
+		.date {
+			font-weight: bold;
+		}
+	}
+
+	.index-post {
+		margin-bottom: 20px;
+
+		h3 {
+			margin: 10px 0 5px 0;
+		}
+
+		h4 {
+			margin: 0 0 15px 0;
+			font-size: 24px;
+			line-height: 30px;
+		}
+	}
+
+	.blog-content {
+		// Dunno, maybe something here?
+	}
+
+	.sidebar {
+
+		img {
+			border: 0;
+			margin-bottom: 20px;
+		}
+
+		h3 {
+			// margin-left: 28px;
+		}
+
+		.sidebar-post {
+
+			padding-bottom: 20px;
+			margin-bottom: 20px;
+			border-bottom: 1px dashed #aaa;
+
+			.date {
+				font-weight: bold;
+				display: block;
+				letter-spacing: 1px;
+			}
+
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+}

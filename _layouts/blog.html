@@ -1,0 +1,29 @@
+---
+layout: default
+blog_title: " - Lietu's tech blog"
+highlight: "blog"
+---
+
+<section class="blog" itemscope itemtype="http://schema.org/Blog">
+	<div class="span11"><h2 itemprop="name">Lietu's tech blog</h2></span></div>
+	<div class="span11 description"><span itemprop="description">Yet another techie blog by Janne Enberg, aka. Lietu</span></div>
+
+	<div class="span9 blog-content">{{ content }}</div>
+	<div class="span2 sidebar well">
+		<h3>About</h3>
+		<div class="about-blog" itemscope itemtype="http://schema.org/Person">
+			<img src="/img/blog/lietu.jpg" itemprop="image" />
+			<p>The author, <span itemprop="name">Janne Enberg</span> aka. <a href="http://lietu.net/">Lietu</a>, is an IT generalist from Espoo, Finland.</p>
+		</div>
+
+		<h3>Posts</h3>
+
+		{% for post in site.posts %}
+		<div class="sidebar-post">
+			<span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
+			<a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+

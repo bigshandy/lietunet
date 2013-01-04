@@ -1,0 +1,118 @@
+html,body {
+	font-family: @fontFamily;
+}
+
+.green {
+	color: @green;
+}
+
+.red {
+	color: @red;
+}
+
+code, pre, .highlight pre code {
+	font-family: "Lucida Console", Monaco, monospace !important;
+}
+
+h1, h1 a {
+	font-size: 48px;
+	white-space: nowrap;
+	color: @h12Color;
+
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+
+	// Scale down a bit to fit mobiles
+	@media (max-width: @scaleDownSize) {
+		font-size: 32px;
+	}
+}
+
+h2 {
+	font-size: 32px;
+	color: @h12Color;
+	margin: 10px 0 30px 0;
+
+	// Scale down a bit to fit mobiles
+	@media (max-width: @scaleDownSize) {
+		font-size: 24px;
+	}
+}
+
+h3 {
+	margin: 30px 0 15px 0;
+	color: @h34Color;
+
+	font-size: 28px;
+	@media (max-width: @scaleDownSize) {
+		font-size: 20px;
+	}
+}
+
+h4 {
+	margin: 20px 0 10px 0;
+	color: @h34Color;
+
+	font-size: 22px;
+	@media (max-width: @scaleDownSize) {
+		font-size: 16px;
+	}
+}
+
+h5, h6 {
+	color: @h56Color;
+}
+
+p, li, label {
+	font-size: 14px;
+	line-height: 28px;
+
+	@media (max-width: @scaleDownSize) {
+		font-size: 12px;
+		line-height: 22px;
+	}
+}
+
+.nav a {
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.75) !important;
+}
+
+h2, h3, h3, h4 {
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+footer {
+	text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+@toggleListMedia: 767px;
+
+ul {
+	margin-left: 25px;
+	list-style-type: square;
+
+	@media (max-width: @toggleListMedia) {
+		li { 
+			margin-bottom: 10px;
+		}
+	}
+	
+	strong {
+		padding-right: 10px;
+		text-align: right;
+
+		display: inline-block;
+		font-weight: bold;
+
+		@media (max-width: @toggleListMedia) {
+			display: inline;
+			padding: 0;
+		}
+
+	}
+}
+
+.not-found-video {
+	object, embed {
+		border: 2px solid #c5c5c5;
+	}
+}

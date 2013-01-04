@@ -1,0 +1,104 @@
+// CSS necessary to attach footer to bottom edge
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: @contentBackground;
+}
+
+header {
+	text-align: center;
+	height: 175px;
+	#gradient > .vertical(lighten(@headerBackground, 6%), darken(@headerBackground, 6%));
+
+	h1 {
+		margin: 0;
+		line-height: 60px;
+		padding-top: 30px;
+	}
+}
+
+body > div.container {
+
+	// CSS to attach footer to bottom edge
+	margin-bottom: @footerHeight * -1;
+	@media (max-width: @scaleDownSize) {
+		margin-bottom: 0;
+	}
+
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+
+	// Page styles
+	&> div.row > div.page {
+		.navbar .navbar-inner {
+			#gradient > .vertical(lighten(@navbarBackground, 15%), @navbarBackground);
+		}
+
+		background-color: @pageBackground;
+		min-height: 700px;
+
+		.border-radius(4px);
+		.box-shadow(0 0 25px rgba(0, 0, 0, 0.9));
+
+		// Overlap a bit with the header and footer
+		margin-top: @pageOverlap * -1;
+		margin-bottom: @footerHeight - @pageOverlap;
+
+		padding-bottom: 40px;
+
+		& > div.content {
+
+
+			text-align: justify;
+			@media (max-width: @scaleDownSize) {
+				text-align: left;
+			}
+
+			.filler {
+				margin: 30px 0 30px 0;
+				text-align: center;
+
+				&:first-child {
+					margin-top: 0;
+				}
+
+			}
+
+			p {
+				margin-bottom: 20px;
+
+				&.nospacing {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+}
+
+// More CSS to attach footer to bottom edge
+footer, push {
+	height: @footerHeight;
+}
+
+footer {
+	font-size: 15px;
+	line-height: 22px;
+
+	text-align: center;
+//	#gradient > .vertical(darken(@footerBackground, 10%), lighten(@footerBackground, 10%));
+
+	background-color: @footerBackground;
+
+	p {
+		padding-top: @pageOverlap + 15px;
+		@media (max-width: @scaleDownSize) {
+			padding-top: 25px;
+		}
+
+		color: #000;
+	}
+}
