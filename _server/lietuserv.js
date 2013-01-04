@@ -60,3 +60,5 @@ var app = connect()
 	// Oh and don't forget to listen
 	.listen(config.port);
 
+console.log('Listening on port ' + config.port);
+

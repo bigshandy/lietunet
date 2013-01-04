@@ -26,6 +26,7 @@ EMAIL_SUBJECT="${SCRIPT_FILE} crashed on $(uname -n)"
 # Script logic
 #
 
+start=$(date +%s)
 while [ true ]; do
     ok=0
 
@@ -36,7 +37,7 @@ while [ true ]; do
 		pid=$(cat "${PIDFILE}")
 
 		# Check if it's running
-		if kill -0 &>1 /dev/null $pid; then
+		if kill -0 2>&1 > /dev/null $pid; then
 			# All OK
 			ok=1
 		fi
@@ -66,6 +67,13 @@ $(uptime)"
 		# And output to terminal
 		echo "${email_message}"
 
+	fi
+
+	# Make sure we don't run infinitely
+	now=$(date +%s)
+	elapsed=$(expr "${now}" - "${start}")
+	if [ "${elapsed}" -gt 59 ]; then
+		exit 0
 	fi
 
 	# Sleep a while to prevent eating 100% CPU
