@@ -2,7 +2,7 @@
 #
 # Monitoring script for Node.js based services
 #
-# Configure, set in your crontab, forget.
+# Configure, set runmonitor.sh in your crontab, forget.
 #
 
 
