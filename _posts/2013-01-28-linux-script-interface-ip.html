@@ -20,3 +20,35 @@ ip -o -4 addr show | grep -v '127.0.0.1' | awk '{print $2"-"$4}' | cut -d'/' -f1
 eth0ip=$(ip -o -4 addr show | grep -v '127.0.0.1' | awk '{print $2"-"$4}' | cut -d'/' -f1 | grep 'eth0-' | cut -d'-' -f2)
 {% endhighlight %}
 
+<p>This is the end result script, without the action I implemented later when "illegal" connections were detected.</p>
+
+{% highlight bash linenos %}
+#!/usr/bin/env bash
+
+# Which program to check for
+program="httpd"
+
+# Which interface to check for
+interface="eth0"
+
+# Find the IP address for the interface
+interfaceip=$(ip -o -4 addr show | grep -v '127.0.0.1' | awk '{print $2"-"$4}' | cut -d'/' -f1 | grep "${interface}-" | cut -d'-' -f2)
+
+echo "Interface ${interface} IP address is ${interfaceip}"
+
+# Check how many connections the program has with the eth0 IP address
+connections=$(netstat -4 -6 -plan 2>&1 | grep "/${program}" | grep "${interfaceip}" | wc -l)
+
+echo "${program} has ${connections} open connections on interface ${interface}"
+
+if [ ${connections} -gt 0 ]; then
+	echo "${program} has connections on interface ${interface}, but it shouldn't. Bad ${program}."
+	exit 1
+fi
+
+echo "No connections from ${program} on interface ${interface}"
+
+exit 0
+
+{% endhighlight %}
+
