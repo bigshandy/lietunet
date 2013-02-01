@@ -4,6 +4,7 @@
 
 	var _gaq = _gaq || [];
 	_gaq.push(['_setAccount', 'UA-27007508-1']);
+	_gaq.push(['_setSiteSpeedSampleRate', 100]);
 	_gaq.push(['_trackPageview']);
 
 	var ga = document.createElement('script');
