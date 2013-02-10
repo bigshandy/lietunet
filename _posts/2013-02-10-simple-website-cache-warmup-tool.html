@@ -1,0 +1,44 @@
+---
+layout: post
+title: "Simple website cache warmup tool"
+---
+
+<h4>Preface</h4>
+
+<p>Many times people install a caching HTTP reverse proxy or similar on their servers to make sure they're fast to access. However, not all of the sites with these set up actually do have a steady stream of, say, 1 visit/min, especially not for ALL of their pages. This means that every now and then the caching proxy will not have the up-to-date content available when a request comes in, and thus has to fetch it from the (usually) much slower backend server.</p>
+<p>How do you remedy this? Well there are many ways, some better than others, but this way is at least very simple: warm up your cache server periodically.</p>
+<p>Basically, you have a script crawling through your website, asking for every resource and "clicking" every link on your page. This way, the amount of time since the cached content expires and before a fresh copy is fetched is at least fairly minimal.</p>
+
+
+<h4>Code</h4>
+
+<p>Save this for example in $HOME/warmup.sh</p>
+
+{% highlight bash linenos %}
+#!/usr/bin/env bash
+
+# URLs to warm up
+urls=$(cat "${HOME}/warmup_urls.txt")
+
+# Command to warm them up with
+warmup="wget -qrp -O /dev/null"
+
+# Loop through the URLs
+for url in ${urls}; do
+	# Build the full command to warm it up
+	cmd="${warmup} '${url}'"
+
+	# Run the command and time it
+	start=$(date +%s.%N)
+	${cmd}
+	end=$(date +%s.%N)
+
+	elapsed=$(echo "${end}-${start}" | bc)
+
+	echo "Warmed up ${url} in ${elapsed} seconds"
+done
+{% endhighlight %}
+
+<p>Then create a file, for example in $HOME/warmup_urls.txt (make sure you point to the correct file in the script), and add the root of your site(s) to warm up. One URL per line. Just run the tool and it will crawl through the contents and thus is making sure your caching server has all of the content available.</p>
+
+<p>Once you're sure it works as intended, put it in your crontab. Just make sure you don't run it too often to bombard your servers off the net, if a single run takes very long, and don't run it exactly in this format if your caching server doesn't have enough cache storage space to store the whole site in it.</p>
