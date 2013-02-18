@@ -63,7 +63,7 @@ var sendResponse = function(request, response, status, headers, responseContent)
 	// Add caching headers if it looks like it'll be fine to do so
 	if (200 === status || 404 === status) {
 		log('Adding caching headers for ' + status + ' response');
-		headers['Cache-Control'] = 'public, max-age=' + config.maxAge;
+		headers['Cache-Control'] = 'public, max-age=' + (config.maxAge / 1000) ;
 	}
 
 	// If we want to gzip, do it
