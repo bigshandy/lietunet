@@ -52,7 +52,7 @@ while [ true ]; do
 		errorlog=$(cat "${ERROR_LOG}")
 
 		# Start node in the background
-		"${NODE}" "${SCRIPT_FILE}" 2 > "${ERROR_LOG}" &
+		"${NODE}" "${SCRIPT_FILE}" 2>"${ERROR_LOG}" &
 
 		# Catch PID
 		pid=$!
