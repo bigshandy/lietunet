@@ -61,14 +61,32 @@ var getRFC2822Date = function(d) {
 };
 
 /**
+ * Formats "accept-encoding" to "Accept-Encoding" for better readability
+ */
+var formatHeader = function(header) {
+	var parts = header.split('-');
+
+	for (var i = 0, count = parts.length; i < count; ++i) {
+		parts[i] = parts[i].substr(0, 1).toUpperCase() + parts[i].substr(1);
+	}
+
+	return parts.join('-');
+};
+
+/**
  * Log errors in a useful enough manner
  */
 var handleError = function(err, request) {
 	if (request) {
-		console.error('Request from ' + request.socket.remoteAddress);
-		console.error(request.method + ': ' + request.url);
+		console.error('Request from ' + request.socket.remoteAddress + ' caught an exception!');
+		console.error(request.method + ' ' + request.url + ' HTTP/' + request.httpVersion);
+		
+		for (var header in request.headers) {
+			console.error(formatHeader(header) + ': ' + request.headers[header]);
+		}
+		console.error();
 	}
-	console.error('Caught an exception: ' + err);
+	console.error('The error was: ' + err);
 	console.error();
 	console.trace();
 	process.exit(1);
