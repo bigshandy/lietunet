@@ -1,0 +1,29 @@
+---
+layout: page
+title: "How's the weather?"
+---
+
+<h2>How's the weather over there?</h2>
+
+<p><strong>A lot of people</strong> talk about the weather for small talk. So for small talk's sake, here's how the weather is like where I live at the moment.</p>
+
+<p>
+	<img id="weather_channel" src="http://lietu.net/weather/latest.jpg" title="Current weather" />
+</p>
+
+<p>The image should be at most some 2 minutes old and should auto-update once a minute if you're lucky. If it doesn't, you either have a crappy browser, or my system is broke somehow. Either way, too bad.</p>
+
+<h2>So you want your own weather channel?</h2>
+
+<p>This feed has been generated with <a href="https://github.com/lietu/lweamonit" title="Lightweight weather monitor">lweamonit</a>, feel free to set up your own.</p>
+
+<script type="text/javascript">
+try {
+	var weatherImage = document.getElementById('weather_channel');
+	weatherSrc = weatherImage.src;
+	setInterval(function() {
+		// Seems to work just fine at least in chrome, if it doesn't in others, too bad.
+		weatherImage.src = weatherSrc
+	}, 60000)
+} catch(e) {;}
+</script>
