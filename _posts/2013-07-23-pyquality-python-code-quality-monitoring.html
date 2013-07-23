@@ -160,7 +160,7 @@ while [[ true ]]; do
 	found_errors="0"
 
 	# Find files in monitor path and loop through them file by file
-	while IFS= read -r -u3 -d $'\0' file; do
+	while IFS= read -r -u3 -d $'\\0' file; do
 
 		if [ "${DEBUG}a" == "1a" ]; then
 			echo $(eval "${DATE}") "Checking if ${file} has changed"
